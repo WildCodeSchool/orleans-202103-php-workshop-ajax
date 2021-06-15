@@ -36,6 +36,7 @@ class ProgramFixtures extends Fixture
             $program = new Program();
             $program->setTitle($title);
             $program->setSummary($data['summary']);
+            $program->setPoster('https://placekitten.com/g/600/800?image=' . rand(0, 16));
             $manager->persist($program);
 
             $this->addReference('program_' . $key, $program);

@@ -65,5 +65,15 @@ class ProgramController extends AbstractController
      */
     public function autocomplete(Request $request, ProgramRepository $programRepository): Response
     {
+        // get value of "q" in the query string
+        $query = $request->query->get('q');
+
+        // if $query is not null, fetch every program with the value of $query inside its title
+        if (null !== $query) {
+            $programs = $programRepository->findByQuery($query);
+        }
+
+        // return all programs data that have been fetched in json format
+        return $this->json($programs, 200);
     }
 }
